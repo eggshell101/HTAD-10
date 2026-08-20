@@ -79,5 +79,64 @@
     "molecular_formula": "C22H24ClFN4O3",
     "molecular_weight": "446.9",
     "canonical_smiles": "COC1=C(C=C2C(=C1)N=CN=C2NC3=CC(=C(C=C3)F)Cl)OCCCN4CCOCC4"
+  },
+  "drug:thalidomide": {
+    "canonical_name": "Thalidomide",
+    "synonyms": [
+      "Thalidomide"
+    ],
+    "drug_type": "chemical",
+    "source": "online",
+    "pubchem_cid": 5426,
+    "molecular_formula": "C13H10N2O4",
+    "molecular_weight": "258.23",
+    "canonical_smiles": "C1CC(=O)NC(=O)C1N2C(=O)C3=CC=CC=C3C2=O"
+  },
+  "disease:glioblastoma": {
+    "canonical_name": "glioblastoma",
+    "synonyms": [
+      "glioblastoma"
+    ],
+    "drug_type": null,
+    "source": "online",
+    "disease_id": "DOID:3068",
+    "definition": "A malignant astrocytoma characterized by the presence of small areas of necrotizing tissue that is surrounded by anaplastic cells as well as the presence of hyperplastic blood vessels, and that has_material_basis_in abnormally proliferating cells derives_from multiple cell types including astrocytes and oligondroctyes.",
+    "match_score": 100
+  },
+  "drug:acetaminophen": {
+    "canonical_name": "Acetaminophen",
+    "synonyms": [
+      "acetaminophen"
+    ],
+    "drug_type": "chemical",
+    "source": "online",
+    "pubchem_cid": 1983,
+    "molecular_formula": "C8H9NO2",
+    "molecular_weight": "151.16",
+    "canonical_smiles": "CC(=O)NC1=CC=C(C=C1)O"
+  },
+  "disease:huntington disease": {
+    "canonical_name": "Huntington disease",
+    "synonyms": [
+      "Huntington disease"
+    ],
+    "drug_type": null,
+    "source": "mesh",
+    "mesh_uri": {
+      "resource": "http://id.nlm.nih.gov/mesh/D006816",
+      "label": "Huntington Disease"
+    }
+  },
+  "drug:omeprazole": {
+    "canonical_name": "Omeprazole",
+    "synonyms": [
+      "omeprazole"
+    ],
+    "drug_type": "chemical",
+    "source": "online",
+    "pubchem_cid": 4594,
+    "molecular_formula": "C17H19N3O3S",
+    "molecular_weight": "345.4",
+    "canonical_smiles": "CC1=CN=C(C(=C1OC)C)CS(=O)C2=NC3=C(N2)C=C(C=C3)OC"
   }
 }
