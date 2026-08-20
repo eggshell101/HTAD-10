@@ -28,7 +28,7 @@ from src.pipeline import run_htad
 # ============================================================
 
 st.set_page_config(
-    page_title="HTAD-10 Discovery Engine",
+    page_title="ReGeneX | Biomedical Discovery",
     page_icon="🧬",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -42,41 +42,74 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-
-    [data-testid="stMetricValue"] {
-        font-family: "Courier New", monospace;
-        font-size: 1.8rem;
+    .stApp {
+        background:
+            radial-gradient(circle at 10% 5%, rgba(70,220,195,.12), transparent 28%),
+            radial-gradient(circle at 90% 10%, rgba(90,145,255,.12), transparent 30%),
+            linear-gradient(135deg,#050b15 0%,#091525 50%,#07111f 100%);
     }
+    [data-testid="stHeader"] { background: transparent; }
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg,#07111f 0%,#0a1728 100%);
+        border-right: 1px solid rgba(148,163,184,.14);
+    }
+    .block-container { max-width:1500px; padding-top:2rem; padding-bottom:3rem; }
 
+    .rx-hero {
+        position:relative; overflow:hidden; padding:38px 42px; margin-bottom:24px;
+        border:1px solid rgba(110,180,255,.20); border-radius:28px;
+        background:linear-gradient(135deg,rgba(18,39,66,.94),rgba(8,23,41,.78));
+        box-shadow:0 24px 70px rgba(0,0,0,.28);
+    }
+    .rx-hero:after {
+        content:""; position:absolute; width:300px; height:300px; right:-100px; top:-150px;
+        border-radius:50%; background:rgba(70,220,195,.15); filter:blur(4px);
+    }
+    .rx-kicker {
+        color:#69e5d2; font-size:.75rem; font-weight:900; letter-spacing:.18em;
+        text-transform:uppercase; margin-bottom:8px;
+    }
+    .rx-title { font-size:3.3rem; font-weight:900; letter-spacing:-.055em; margin:0; }
+    .rx-subtitle { color:#a9bdd3; font-size:1.05rem; max-width:820px; line-height:1.6; margin-top:10px; }
+    .rx-pill,.rx-live {
+        display:inline-flex; align-items:center; gap:8px; margin-top:18px; padding:7px 13px;
+        border-radius:999px; background:rgba(70,220,195,.09);
+        border:1px solid rgba(70,220,195,.28); color:#8cebdd;
+        font-size:.72rem; font-weight:900; letter-spacing:.08em;
+    }
+    .rx-card {
+        border:1px solid rgba(148,163,184,.16); border-radius:20px; padding:22px;
+        background:rgba(15,28,48,.70); box-shadow:0 12px 35px rgba(0,0,0,.16);
+        backdrop-filter:blur(14px); margin-bottom:16px;
+    }
+    .rx-label { color:#8fa6bf; text-transform:uppercase; font-size:.68rem; font-weight:900; letter-spacing:.13em; }
+    .rx-value { color:#f2f8ff; font-size:1.35rem; font-weight:850; margin-top:4px; }
+    .rx-score { font-size:3.5rem; line-height:1; font-weight:900; letter-spacing:-.06em; }
+    .rx-path {
+        display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;
+        padding:22px; border-radius:18px; background:rgba(7,17,31,.55);
+        border:1px solid rgba(148,163,184,.12); margin:12px 0 20px;
+    }
+    .rx-node {
+        padding:12px 18px; border-radius:14px; border:1px solid rgba(70,220,195,.28);
+        background:rgba(70,220,195,.08); font-weight:850;
+    }
+    .rx-arrow { color:#62d9cb; font-size:1.4rem; }
+    [data-testid="stMetric"] {
+        background:rgba(15,28,48,.62); border:1px solid rgba(148,163,184,.14);
+        padding:16px; border-radius:16px;
+    }
+    [data-testid="stMetricValue"] { font-family:"SFMono-Regular",Consolas,monospace; font-size:1.65rem; }
     .stTabs [data-baseweb="tab-list"] {
-        gap: 20px;
+        gap:8px; background:rgba(9,20,35,.65); padding:6px; border-radius:14px;
     }
-
-    .stTabs [data-baseweb="tab"] {
-        height: 50px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-    .live-badge {
-        padding: 6px 12px;
-        border-radius: 15px;
-        font-weight: 700;
-        display: inline-block;
-        border: 1px solid rgba(128,128,128,.35);
-    }
-
-    .candidate-card {
-        padding: 18px;
-        border-radius: 12px;
-        border: 1px solid rgba(128,128,128,.25);
-        margin-bottom: 12px;
-    }
-
+    .stTabs [data-baseweb="tab"] { border-radius:10px; padding:10px 18px; }
+    .stButton > button { border-radius:12px; font-weight:850; }
     </style>
     """,
     unsafe_allow_html=True,
 )
+
 
 
 # ============================================================
@@ -96,7 +129,7 @@ if "last_query" not in st.session_state:
 
 with st.sidebar:
 
-    st.markdown("## ⚙️ HTAD-10")
+    st.markdown("## ⚙️ ReGeneX")
 
     st.caption(
         "Live biomedical evidence discovery engine"
@@ -194,16 +227,20 @@ with st.sidebar:
 
 st.markdown(
     """
-    # 🧬 HTAD-10
-    ## Hypothesis-to-Action Discovery Engine
-
-    **LIVE EVIDENCE DISCOVERY**
-
-    Biomedical literature + clinical-trial evidence  
-    + mechanistic relationship inference  
-    + transparent HTAD scoring
-    """
+    <section class="rx-hero">
+      <div class="rx-kicker">ReGeneX · Live Biomedical Intelligence</div>
+      <div class="rx-title">From evidence to action.</div>
+      <div class="rx-subtitle">
+        Discover drug–target–disease relationships from live biomedical sources,
+        infer mechanistic candidates, score evidence transparently, and inspect
+        the quantum validation layer in one research dashboard.
+      </div>
+      <span class="rx-pill">● LIVE EVIDENCE ENGINE</span>
+    </section>
+    """,
+    unsafe_allow_html=True,
 )
+
 
 st.markdown(
     '<span class="live-badge">● LIVE SEARCH ENGINE</span>',
@@ -297,7 +334,7 @@ if results is None:
 
         ---
 
-        ### HTAD-10 pipeline
+        ### ReGeneX pipeline
 
         ```text
         Live Search
@@ -310,7 +347,7 @@ if results is None:
              ↓
         Candidate Inference
              ↓
-        HTAD-10 Scoring
+        ReGeneX Scoring
              ↓
         Quantum Validation
         ```
@@ -672,27 +709,26 @@ final_score = get_score(
 # PRIORITY CANDIDATE
 # ============================================================
 
+st.markdown("### Priority candidate")
+
 st.markdown(
-    "## 🚨 Priority Candidate"
+    f"""
+    <div class="rx-path">
+      <span class="rx-node">💊 {drug}</span>
+      <span class="rx-arrow">→</span>
+      <span class="rx-node">🎯 {target}</span>
+      <span class="rx-arrow">→</span>
+      <span class="rx-node">🧬 {disease}</span>
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
 
-p1, p2, p3 = st.columns(3)
-
-p1.metric(
-    "Drug",
-    str(drug).upper(),
-)
-
-p2.metric(
-    "Potential Indication",
-    disease,
-)
-
-p3.metric(
-    "HTAD-10 Score",
-    f"{final_score:.1f}/100",
-)
-
+p1, p2, p3, p4 = st.columns(4)
+p1.metric("Drug", str(drug).upper())
+p2.metric("Target", str(target).upper())
+p3.metric("Indication", disease)
+p4.metric("ReGeneX Score", f"{final_score:.1f}/100")
 
 # ============================================================
 # TABS
@@ -828,7 +864,7 @@ with tab1:
         ):
 
             st.markdown(
-                "### HTAD-10 SCORE"
+                "### ReGeneX SCORE"
             )
 
             st.markdown(
@@ -967,7 +1003,7 @@ with tab1:
             ),
         ),
         (
-            "Final HTAD-10",
+            "Final ReGeneX",
             scores.get(
                 "final",
                 0,
@@ -1243,144 +1279,98 @@ with tab2:
 
 # ============================================================
 # TAB 3 — QUANTUM
-# ============================================================
 
 with tab3:
 
-    st.markdown(
-        "### 🔬 Quantum-Compatible Validation"
-    )
-
-    st.info(
-        "Quantum validation is kept separate from evidence inference "
-        "and reports the prototype's internal plausibility assessment."
+    st.markdown("### ⚛️ Quantum Validation")
+    st.caption(
+        "Qiskit-backed QAOA validation is displayed independently from biomedical evidence scoring."
     )
 
     quantum = data.get(
         "quantum_data",
-        data.get(
-            "quantum",
-            data.get(
-                "quantum_validation",
-                {},
-            ),
-        ),
+        data.get("quantum", data.get("quantum_validation", {})),
     )
 
     if quantum:
+        status = quantum.get("status", quantum.get("quantum_status", "unknown"))
+        method = quantum.get("method", quantum.get("quantum_method", "Not specified"))
+        state = quantum.get("state", quantum.get("quantum_state", "Not available"))
 
-        status = quantum.get(
-            "status",
-            "unknown",
-        )
+        def qnum(*keys, default=None):
+            for key in keys:
+                value = quantum.get(key)
+                if value is not None:
+                    try:
+                        return float(value)
+                    except (TypeError, ValueError):
+                        return value
+            return default
 
-        method = quantum.get(
-            "method",
-            "Not specified",
-        )
+        score = qnum(
+            "score", "quantum_score",
+            default=scores.get("quantum", 0.0)
+        ) or 0.0
+        qenergy = qnum("energy", "quantum_energy")
+        classical_energy = qnum("classical_energy")
+        gap = qnum("energy_gap")
+        ratio = qnum("approximation_ratio")
 
-        state = quantum.get(
-            "state",
-            "Not available",
-        )
-
-        try:
-            score = float(
-                quantum.get(
-                    "score",
-                    scores.get(
-                        "quantum",
-                        0.0,
-                    ),
-                )
-                or 0.0
-            )
-        except (
-            TypeError,
-            ValueError,
-        ):
-            score = 0.0
-
-        q1, q2, q3 = st.columns(3)
-
-        q1.metric(
-            "Validation Status",
-            str(status),
-        )
-
-        q2.metric(
-            "Plausibility Score",
-            f"{score:.2f}/100",
-        )
-
-        q3.metric(
-            "Method",
-            str(method),
-        )
+        a, b, c, d = st.columns(4)
+        a.metric("Status", str(status).upper())
+        b.metric("Quantum score", f"{score:.2f}/100")
+        c.metric("QAOA energy", "—" if qenergy is None else f"{qenergy:.6f}")
+        d.metric("Approx. ratio", "—" if ratio is None else f"{ratio:.4f}")
 
         st.markdown(
-            f"**Validation state:** `{state}`"
+            f"""
+            <div class="rx-card">
+              <div class="rx-label">Qiskit execution</div>
+              <div class="rx-value">{method}</div>
+              <div style="color:#91a4ba;margin-top:8px">
+                Optimized state: <b>{state}</b>
+                {" · Energy gap: <b>"+f"{gap:.6f}"+"</b>" if gap is not None else ""}
+              </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
         )
 
-        features = quantum.get(
-            "features",
-            {},
-        )
+        q1, q2 = st.columns(2)
+        with q1:
+            st.markdown("#### Optimization result")
+            st.json({
+                "quantum_energy": qenergy,
+                "classical_energy": classical_energy,
+                "energy_gap": gap,
+                "approximation_ratio": ratio,
+                "state": state,
+            })
 
-        if features:
-            st.markdown("#### Quantum Features")
-            st.json(features)
+        with q2:
+            st.markdown("#### Quantum features")
+            st.json(
+                quantum.get(
+                    "features",
+                    quantum.get("quantum_features", {}),
+                )
+            )
 
         if score >= 75:
-            st.success(
-                f"The quantum validation prototype assigns a high "
-                f"internal plausibility score of {score:.2f}/100 "
-                "to this candidate."
-            )
+            st.success(f"Strong internal quantum validation score: {score:.2f}/100.")
         elif score >= 50:
-            st.warning(
-                f"The quantum validation prototype assigns an "
-                f"intermediate plausibility score of {score:.2f}/100."
-            )
+            st.warning(f"Intermediate internal quantum validation score: {score:.2f}/100.")
         else:
-            st.error(
-                f"The quantum validation prototype assigns a low "
-                f"plausibility score of {score:.2f}/100."
-            )
+            st.error(f"Low internal quantum validation score: {score:.2f}/100.")
 
-        st.caption(
-            "Important: this prototype performs QUBO-based "
-            "quantum-compatible validation. It does not claim "
-            "that a physical quantum processor or molecular VQE "
-            "calculation has been executed."
+        st.info(
+            "The quantum layer validates the candidate's evidence-consistency formulation. "
+            "A QAOA result is not, by itself, proof of clinical efficacy."
         )
-
 
     else:
+        st.warning("No quantum validation result is available for this candidate.")
 
-        st.warning(
-            "No quantum validation result is available "
-            "for this candidate."
-        )
-
-        st.markdown(
-            """
-            ### Planned validation
-
-            Candidate mechanism
-                    ↓
-            Molecular fragment / active space
-                    ↓
-            VQE / quantum chemistry
-                    ↓
-            Energy difference
-                    ↓
-            Physics-informed validation
-            """
-        )
-
-
-# ============================================================
 # TAB 4 — LITERATURE
 # ============================================================
 
@@ -1476,7 +1466,7 @@ with tab4:
 st.divider()
 
 st.caption(
-    "HTAD-10 | Live evidence discovery → "
+    "ReGeneX | Live evidence discovery → "
     "mechanistic inference → candidate scoring → "
     "transparent quantum validation"
 )

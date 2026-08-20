@@ -138,5 +138,28 @@
     "molecular_formula": "C17H19N3O3S",
     "molecular_weight": "345.4",
     "canonical_smiles": "CC1=CN=C(C(=C1OC)C)CS(=O)C2=NC3=C(N2)C=C(C=C3)OC"
+  },
+  "drug:propranolol": {
+    "canonical_name": "Propranolol",
+    "synonyms": [
+      "propranolol"
+    ],
+    "drug_type": "chemical",
+    "source": "online",
+    "pubchem_cid": 4946,
+    "molecular_formula": "C16H21NO2",
+    "molecular_weight": "259.34",
+    "canonical_smiles": "CC(C)NCC(COC1=CC=CC2=CC=CC=C21)O"
+  },
+  "disease:hemangioma": {
+    "canonical_name": "hemangioma",
+    "synonyms": [
+      "hemangioma"
+    ],
+    "drug_type": null,
+    "source": "online",
+    "disease_id": "DOID:255",
+    "definition": "A cardiovascular organ benign neoplasm that has_material_basis_in endothelial cells that line blood vessels and is characterized by increased number of normal or abnormal vessels filled with blood.",
+    "match_score": 100
   }
 }
